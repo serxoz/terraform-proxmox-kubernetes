@@ -10,9 +10,9 @@ variable "instance_cores" {
 }
 
 variable "instance_disk_size" {
-  default     = 20
+  default     = "20G"
   description = "Amount of disk space to allocate to each VM (default: 20G)"
-  type        = number
+  type        = string 
 }
 
 variable "instance_memory" {

@@ -1,5 +1,15 @@
 # Requires export of PM_PASS
+terraform {
+  required_providers {
+    proxmox = {
+      source = "Telmate/proxmox"
+      version = "2.6.6"
+    }
+  }
+}
+
 provider "proxmox" {
+  pm_tls_insecure = true
   pm_api_url  = var.proxmox_url
   pm_user     = var.proxmox_user
   pm_parallel = "8"
@@ -30,16 +40,13 @@ resource "proxmox_vm_qemu" "k8s-masters" {
   bootdisk    = "scsi0"
 
   disk {
-    id           = 0
     size         = var.instance_disk_size
     type         = "scsi"
     storage      = var.instance_storage_name
-    storage_type = var.instance_storage_type
     iothread     = true
   }
 
   network {
-    id     = 0
     model  = "virtio"
     bridge = "vmbr0"
   }
@@ -50,7 +57,7 @@ resource "proxmox_vm_qemu" "k8s-masters" {
     ]
   }
 
-  ipconfig0 = "ip=192.168.192.22${count.index}/24,gw=192.168.192.1"
+  ipconfig0 = "ip=192.168.1.22${count.index}/24,gw=192.168.1.1"
 
   sshkeys = var.ssh_key
 }
@@ -142,16 +149,13 @@ resource "proxmox_vm_qemu" "k8s-workers" {
   bootdisk    = "scsi0"
 
   disk {
-    id           = 0
     size         = var.instance_disk_size
     type         = "scsi"
     storage      = var.instance_storage_name
-    storage_type = var.instance_storage_type
     iothread     = true
   }
 
   network {
-    id     = 0
     model  = "virtio"
     bridge = "vmbr0"
   }

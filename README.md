@@ -10,7 +10,7 @@ It is only using a single server for all of the instances, I'm not rich ;)
 # Requirements
 * Proxmox Terraform Provider: https://github.com/Telmate/terraform-provider-proxmox
 * export of `PM_PASS` variable
-* Fill out a "vars" file to pass to Terraform.
+* Fill out a "terraform.tfvars" file to pass to Terraform.
 
 # Variables
 | Name | Description | Type | Default | Required |

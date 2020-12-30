@@ -48,7 +48,7 @@ sudo apt-get -y install keepalived haproxy
 # KeepAlived and HAProxy Global Variables
 APISERVER_SRC_PORT="6443"
 APISERVER_DEST_PORT="6443"
-APISERVER_VIP="192.168.192.240"
+APISERVER_VIP="192.168.1.240"
 INTERFACE=$(sudo route | grep '^default' | grep -o '[^ ]*$')
 AUTH_PASS=$(cat /dev/shm/keepalive_password)
 
