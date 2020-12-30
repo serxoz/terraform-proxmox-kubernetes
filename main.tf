@@ -36,7 +36,6 @@ resource "proxmox_vm_qemu" "k8s-masters" {
   sockets     = var.instance_sockets
   cpu         = "host"
   memory      = var.instance_memory
-  scsihw      = "lsi"
   bootdisk    = "scsi0"
 
   disk {
@@ -145,7 +144,6 @@ resource "proxmox_vm_qemu" "k8s-workers" {
   sockets     = var.instance_sockets
   cpu         = "host"
   memory      = var.instance_memory
-  scsihw      = "lsi"
   bootdisk    = "scsi0"
 
   disk {
@@ -166,7 +164,7 @@ resource "proxmox_vm_qemu" "k8s-workers" {
     ]
   }
 
-  ipconfig0 = "ip=192.168.192.23${count.index}/24,gw=192.168.192.1"
+  ipconfig0 = "ip=192.168.1.23${count.index}/24,gw=192.168.1.1"
 
   sshkeys = var.ssh_key
 
