@@ -40,7 +40,3 @@ EOF
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
-
-# Hack to comment /etc/network/interfaces lines that content eth0 due to problems with cloud-init (see README)
-sudo sed -e '/eth0/ s/^#*/#/' -i /etc/network/interfaces
-sudo reboot

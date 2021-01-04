@@ -11,6 +11,8 @@ It is only using a single server for all of the instances, I'm not rich ;)
 * Proxmox Terraform Provider: https://github.com/Telmate/terraform-provider-proxmox
 * export of `PM_PASS` variable
 * Fill out a "terraform.tfvars" file to pass to Terraform.
+* Use daily image from here: https://cloud.debian.org/images/cloud/buster/
+* Prepare cloud-init previous image: https://pve.proxmox.com/wiki/Cloud-Init_Support
 
 # Variables
 | Name | Description | Type | Default | Required |
@@ -50,4 +52,3 @@ worker_count = "3"
 
 # Issues
 * A `lifecycle` block is needed to ignore changes to the "network" section as subsequent applies mess with networking. This is a known issue with the Terraform Proxmox provider: https://github.com/Telmate/terraform-provider-proxmox/issues/112.
-* I'm using this Debian Cloud-Init image: https://cdimage.debian.org/cdimage/openstack/current-10/ and preparing the template using this doc: https://pve.proxmox.com/wiki/Cloud-Init_Support. But I encounter that some minutes after finish the installation Debian loses his ip addresses on eth0 due to, I think, some incompatibility with having an eth0 definition as DHCP on /etc/network/interfaces file so I've added this command to circumvent this problem: ```sh sed -e '/eth0/ s/^#*/#/' -i /etc/network/interfaces```
