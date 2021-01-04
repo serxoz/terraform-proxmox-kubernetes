@@ -50,3 +50,4 @@ worker_count = "3"
 
 # Issues
 * A `lifecycle` block is needed to ignore changes to the "network" section as subsequent applies mess with networking. This is a known issue with the Terraform Proxmox provider: https://github.com/Telmate/terraform-provider-proxmox/issues/112.
+* I'm using this Debian Cloud-Init image: https://cdimage.debian.org/cdimage/openstack/current-10/ and preparing the template using this doc: https://pve.proxmox.com/wiki/Cloud-Init_Support. But I encounter that some minutes after finish the installation Debian loses his ip addresses on eth0 due to, I think, some incompatibility with having an eth0 definition as DHCP on /etc/network/interfaces file so I've added this command to circumvent this problem: ```sh sed -e '/eth0/ s/^#*/#/' -i /etc/network/interfaces```

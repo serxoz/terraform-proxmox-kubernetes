@@ -180,3 +180,7 @@ EOF
 # Enable Services
 sudo systemctl enable haproxy --now
 sudo systemctl enable keepalived --now
+
+# Hack to comment /etc/network/interfaces lines that content eth0 due to problems with cloud-init (see README)
+sudo sed -e '/eth0/ s/^#*/#/' -i /etc/network/interfaces
+sudo reboot
